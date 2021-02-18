@@ -20,7 +20,7 @@ def findNumLeft(arrayIn,target):
     while l<=r:
         mid = (l+r)>>1
         if arrayIn[mid]==target:
-            r = mid -1
+            r = mid - 1
         elif arrayIn[mid] < target:
             l = mid + 1
         else:
@@ -31,12 +31,12 @@ def findNumLeft(arrayIn,target):
 def findNumRotate(arrayIn,target):
     l,r = 0, len(arrayIn)-1
     while l<=r:
-        mid = (l+r)>>1
+        mid = l + (r - l) // 2
         if arrayIn[mid] == arrayIn[l]:
-            if arrayIn[mid] == target:
-                l += 1
+            if arrayIn[l] != target:
+                l +=1
             else:
-                r = mid - 1
+                r = mid -1
         elif arrayIn[mid] > arrayIn[l]: # order [l,mid]
             if arrayIn[l] <= target <= arrayIn[mid]:
                 r = mid -1
