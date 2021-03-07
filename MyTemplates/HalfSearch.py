@@ -50,7 +50,36 @@ def findNumRotate(arrayIn,target):
     if l>=len(arrayIn) or arrayIn[l]!=target: return -1
     return l
 
+def minEatingSpeed(piles, h):
+    """
+    :type piles: List[int]
+    :type h: int
+    :rtype: int
+    """
+    # H>len(piles)
+    def judge(piles,speed,h):
+        cnt = 0
+        for item in piles:
+            cnt += (item + speed - 1) // speed
+            if cnt>h:
+                return False
+        return True
+
+    maxspeed,lowspeed = -1,1
+    for i in piles:
+        maxspeed = max(maxspeed,i)
+    while (maxspeed>lowspeed):
+        midspeed = int(lowspeed + (maxspeed-lowspeed)/2)
+        if judge(piles,midspeed,h):
+            maxspeed = midspeed
+        else:
+            lowspeed = midspeed + 1
+    return lowspeed
+
+
+
 
 if __name__ == '__main__':
     # print(findNumbers([1,3,4,6,7,8,10,13,14],4))
-    print(findNumRotate([4,4,4,6,1,1,3,3,4],4))
+    # print(findNumRotate([4,4,4,6,1,1,3,3,4],4))
+    print(minEatingSpeed([3,6,7,11],8))
