@@ -68,6 +68,16 @@ for i in range(n):
 #如果求组合数就是外层for循环遍历物品，内层for遍历背包。
 #如果求排列数就是外层for遍历背包，内层for循环遍历物品。
 
+# 区间DP
+# def helper(self, ns: List[int]) :
+#     N = len(ns)
+#     dp = [[0] * N for _ in range(N+1)]
+#     for l in range(N): # 长度从小到大
+#         for i in range(N-l): # 以 i 为 开头
+#             j = i + l           # 以 j 为 终点
+#             for k in range(i,j): # 以 k 为分割点，进行分治
+#                 // Todo 业务逻辑
+
 res = []
 path = []
 
@@ -88,7 +98,8 @@ class Solution(object):
         return res
 
     def dfs(self, nums, index, res, path):
-        res.append(copy.deepcopy(path))
+        if True: #如果要达到某个长度，修改
+            res.append(copy.deepcopy(path))
         for i in range(index, len(nums)):
             path.append(nums[i])
             self.dfs(nums, i + 1, res, path)
